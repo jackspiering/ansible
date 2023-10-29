@@ -1,0 +1,19 @@
+---
+- name: Update and reboot Ubuntu servers if necessary
+  hosts: root
+  become: yes
+
+  tasks:
+    - name: Update the system
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Check if a reboot is required
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_check
+
+    - name: Reboot the system if necessary
+      reboot:
+      when: reboot_check.stat.exists
