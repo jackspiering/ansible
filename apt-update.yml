@@ -1,5 +1,5 @@
 ---
-- name: Update and reboot Ubuntu servers if necessary
+- name: Update and reboot Ubuntu servers if necessaryy
   hosts: root
   become: yes
 
